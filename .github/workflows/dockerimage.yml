@@ -11,6 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag deweiliu/searching:latest
-      run: docker login --username deweiliu --password ${{ secrets.DockerHub }}
-      run: docker push deweiliu/searching:latest
+      run: |
+        docker build . --file Dockerfile --tag deweiliu/searching:latest
+        docker login --username deweiliu --password ${{ secrets.DockerHub }}
+        docker push deweiliu/searching:latest
