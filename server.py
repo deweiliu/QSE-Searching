@@ -1,6 +1,7 @@
 from flask import render_template, request
 from flask_cors import CORS
 from python_module.search import searchDB
+from python_module.ad import adDB
 from python_module.cache import cacheDB
 import connexion
 
@@ -18,7 +19,10 @@ def home():
 @app.route('/search', methods=['POST'])
 def search():
     keyword = request.form['search']
-    data = searchDB(keyword)
+    data=dict()
+    data['result'] = searchDB(keyword)
+    data['ad']=adDB(keyword)
+    data['keyword']=keyword
 
     return render_template('result.html', data=data)
 
@@ -30,4 +34,4 @@ def cache(title):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0',port=80, debug=True)

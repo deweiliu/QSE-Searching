@@ -11,17 +11,18 @@
 <body>
     <h1>Advertisements</h1>
     <ul>
-        {% for item in data %}
-        <h3>Ad Title: {{item.ad_title}}</h3>
-        <p>Ad URL: <a href="{{item.ad_URL}}">{{item.ad_URL}}</a></p>
+        {% for item in data.ad %}
+        <h3>Advertiser: {{item.Advertiser}}</h3>
+        <p>Ad URL: <a href="{{item.URL}}">{{item.URL}}</a></p>
+        <p>Industry: {{item.industry}}</p>
         </br>
         {% endfor %}
     </ul>
-    
-    <h1>Dewei Search Result</h1>
+
+    <h1>Dewei Search Result for '{{data.keyword}}'</h1>
 
     <ul>
-        {% for item in data %}
+        {% for item in data.result %}
         <h3>Page Title: {{item.title}}</h3>
         <p>Cache: <a href="/cache/{{item.title}}">/cache/{{item.title}}</a></p>
         <p>Original URL: <a href="{{item.URL}}">{{item.URL}}</a></p>

@@ -13,11 +13,25 @@ def get_table(table):
     dynamodb = session.resource('dynamodb')
     return dynamodb.Table(table)
 
-def scan(table,key,value):
-    scan_result=list()
-    records=(table.scan(AttributesToGet=['title', 'URL','text']))['Items']
+
+def scan(table, key, value, attributes=['title', 'URL'], printa=False):
+    scan_result = list()
+    response = (table.scan(AttributesToGet=attributes))
+    records = response['Items']
     for record in records:
         if (value.lower() in record[key].lower()):
             scan_result.append(record)
+            if(len(scan_result) > 5):
+                return scan_result
+
+    while 'LastEvaluatedKey' in response:
+        response = table.scan(AttributesToGet=attributes,
+                              ExclusiveStartKey=response['LastEvaluatedKey'])
+        records = (response['Items'])
+        for record in records:
+            if (value.lower() in record[key].lower()):
+                scan_result.append(record)
+                if(len(scan_result) > 5):
+                    return scan_result
 
     return scan_result

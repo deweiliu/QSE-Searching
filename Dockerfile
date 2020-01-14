@@ -9,7 +9,7 @@ FROM python:3.7.0-alpine
 #FROM continuumio/miniconda3
 
 LABEL Name=qse-searching Version=0.0.1
-EXPOSE 5000
+EXPOSE 80
 
 WORKDIR /app
 ADD . /app
