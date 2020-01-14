@@ -3,7 +3,7 @@
 # OS Support also exists for jessie & stretch (slim and full).
 # See https://hub.docker.com/r/library/python/ for all supported Python
 # tags from Docker Hub.
-FROM python:alpine
+FROM python:3.7.0-alpine
 
 # If you prefer miniconda:
 #FROM continuumio/miniconda3
@@ -15,7 +15,9 @@ WORKDIR /app
 ADD . /app
 
 # Using pip:
+RUN pip install --upgrade pip
 RUN python3 -m pip install -r requirements.txt
+RUN pytest
 CMD ["python3", "server.py"]
 
 # Using pipenv:
