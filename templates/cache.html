@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cache of {{data.title}}</title>
+
+
+</head>
+
+<body>
+    <h1>Cache of {{data.title}}</h1>
+    {% autoescape false %}
+
+    {{data.text}}
+    {% endautoescape %}
+
+</body>
+
+
+</html>
