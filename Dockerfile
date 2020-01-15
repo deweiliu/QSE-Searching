@@ -18,6 +18,7 @@ ADD . /app
 RUN pip install --upgrade pip
 RUN python3 -m pip install -r requirements.txt
 RUN pytest
+
 CMD ["python3", "server.py"]
 
 # Using pipenv:
